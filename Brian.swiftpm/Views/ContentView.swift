@@ -37,13 +37,16 @@ struct ContentView: View {
                 }
                 .padding(.bottom, 15)
 
-                Text(selectedItem.title)
-                    .font(.title.bold())
-                    .contentTransition(.numericText())
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(selectedItem.title)
+                        .font(.title.bold())
+                        .contentTransition(.numericText())
+                        .animation(.easeInOut, value: selectedItem.id)
+                        .padding(.leading, 5)
 
-                Text(selectedItem.text)
-                    .font(.caption2)
-                    .foregroundStyle(.gray)
+                    JustifiedTextView(text: selectedItem.text)
+                        .frame(maxWidth: .infinity)
+                }
 
                 Button {
                     updateItem(isForward: true)
@@ -56,10 +59,10 @@ struct ContentView: View {
                         .padding(.vertical, 12)
                         .background(.indigo.gradient, in: .capsule)
                 }
-                .padding(.top, 25)
+//                .padding(.top, 25)
             }
             .multilineTextAlignment(.center)
-            .frame(width: 300)
+            .frame(width: 320)
             .frame(maxHeight: .infinity)
         }
     }
