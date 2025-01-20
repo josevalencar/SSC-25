@@ -26,6 +26,8 @@ struct ContentView: View {
             }
             .frame(height: 250)
             .frame(maxHeight: .infinity)
+            
+            Spacer().frame(height: 20)
 
             VStack(spacing: 6) {
                 HStack(spacing: 4) {
@@ -59,6 +61,8 @@ struct ContentView: View {
                         .padding(.vertical, 12)
                         .background(.indigo.gradient, in: .capsule)
                 }
+                
+                Spacer().frame(height: 20)
 //                .padding(.top, 25)
             }
             .multilineTextAlignment(.center)

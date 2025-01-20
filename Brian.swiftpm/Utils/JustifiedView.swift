@@ -14,10 +14,12 @@ struct JustifiedTextView: UIViewRepresentable {
         let textView = UITextView()
         textView.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         textView.textAlignment = .justified
+        textView.textColor = .darkGray
         return textView
     }
     
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.text = text
+        uiView.textColor = .darkGray
     }
 }
