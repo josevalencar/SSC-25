@@ -9,6 +9,8 @@ import SwiftUI
 
 @available(iOS 17.0, *)
 struct NeuronView: View {
+    @State private var showName = false
+    @State private var showIntro = false
     private let start = Date()
 
     var body: some View {
@@ -27,11 +29,34 @@ struct NeuronView: View {
                         )
                     }
                 
-                VStack {
-                    Spacer()
-                    Text("Hello from the Neuron View!")
+                VStack() {
+                    Spacer().frame(height: 400)
+                    Text("Hi, I'm Brian")
+                        .font(.title.bold())
                         .foregroundColor(.white)
+                        .opacity(showName ? 1 : 0)
+                        .animation(.easeIn(duration: 1), value: showName)
                         .padding()
+                    
+                    Text("I'm a neural network simulating how our brain processes information. I'll guide you from my birth to where I am now.")
+                            .foregroundColor(.white)
+                            .opacity(showIntro ? 1 : 0)
+                            .animation(.easeIn(duration: 1), value: showIntro)
+                            .padding()
+                }
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        withAnimation {
+                            showName = true
+                        }
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                        withAnimation {
+                            showIntro = true
+                        }
+                    }
+                
                 }
             }
         }
