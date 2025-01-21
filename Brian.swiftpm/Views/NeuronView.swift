@@ -14,16 +14,26 @@ struct NeuronView: View {
     var body: some View {
         TimelineView(.animation) { timeline in
             let time = start.distance(to: timeline.date)
-            Rectangle()
-                .ignoresSafeArea()
-                .visualEffect { content, proxy in
-                    content.colorEffect(
-                        ShaderLibrary.neuron(
-                            .float2(proxy.size),
-                            .float(time)
+            
+            ZStack {
+                Rectangle()
+                    .ignoresSafeArea()
+                    .visualEffect { content, proxy in
+                        content.colorEffect(
+                            ShaderLibrary.brian(
+                                .float2(proxy.size),
+                                .float(time)
+                            )
                         )
-                    )
+                    }
+                
+                VStack {
+                    Spacer()
+                    Text("Hello from the Neuron View!")
+                        .foregroundColor(.white)
+                        .padding()
                 }
+            }
         }
     }
 }
@@ -34,3 +44,4 @@ struct NeuronView_Previews: PreviewProvider {
         NeuronView()
     }
 }
+
