@@ -5,8 +5,6 @@
 //  Created by José Vitor Alencar on 25/01/25.
 //
 
-// StoryItems.swift
-
 import SwiftUI
 
 struct StoryItem: Identifiable {
@@ -16,23 +14,23 @@ struct StoryItem: Identifiable {
 }
 
 enum StoryContentType: Equatable {
-    case introBrian
     case image(name: String)
     case shader(ShaderType)
 }
 
 enum ShaderType: Equatable {
+    case neuron
     case neuralBlue
     case neuralGreen
 }
 
 let defaultStoryItems: [StoryItem] = [
     .init(
-        type: .introBrian,
+        type: .shader(.neuron),
         text: "I’m not human, but I’ve learned to think a little like one. Let me show you how humans have taught machines to process, decide, and even create—just like they do."
     ),
     .init(
-        type: .image(name: "fossil.shell.fill"),
+        type: .image(name: "neuron-cell"),
         text: "Your brain is full of tiny cells called neurons. Each neuron has three main parts: dendrites that receive signals, an axon that sends them, and a cell body that processes the information. These neurons form a network that decides and learns over time by strengthening their connections."
     ),
     .init(

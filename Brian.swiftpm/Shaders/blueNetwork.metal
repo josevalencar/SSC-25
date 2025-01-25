@@ -10,7 +10,7 @@
 using namespace metal;
 
 [[ stitchable ]]
-half4 neuron(float2 pos,
+half4 blueNetwork(float2 pos,
               half4 baseColor,
               float2 resolution,
               float  time)

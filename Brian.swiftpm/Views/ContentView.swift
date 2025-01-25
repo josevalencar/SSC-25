@@ -9,6 +9,7 @@ struct ContentView: View {
     @State private var showNextView: Bool = false
     
     var body: some View {
+        
         ZStack {
             if !showNextView {
                 VStack(spacing: 0) {
