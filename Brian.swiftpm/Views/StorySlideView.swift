@@ -115,7 +115,7 @@ struct StorySlideView: View {
                 .shadow(radius: 8)
                 .visualEffect { content, proxy in
                     content.colorEffect(
-                        ShaderLibrary.sinebow(
+                        ShaderLibrary.colorfulNetwork(
                             .float2(proxy.size),
                             .float(time)
                         )
