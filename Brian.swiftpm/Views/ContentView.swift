@@ -82,7 +82,7 @@ struct ContentView: View {
                 .transition(.opacity)
             }
             else {
-                NeuronView()
+                StoryView()
                     .transition(.opacity)
             }
         }

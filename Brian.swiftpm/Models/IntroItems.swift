@@ -24,7 +24,7 @@ struct Item: Identifiable {
 let items: [Item] = [
     .init(
         image: "brain.fill",
-        title: "Meet Brian.",
+        title: "Welcome to Brian.",
         text: "This app tells the story of how humans have shaped machines to think like our very own minds—an exploration of intelligence come to life. Volume up your audio for better experience.",
         scale: 1
     ),
