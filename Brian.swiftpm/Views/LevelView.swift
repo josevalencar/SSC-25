@@ -43,7 +43,7 @@ struct LevelView: View {
                 }
                 .frame(width: 80, height: 80)
                 NavigationLink {
-//                    ContentView()
+                    CustomGameLevelView(level: level, selectedLevel: $selectedLevel, questionIndex: $questionIndex)
                 } label: {
                     Image(systemName: selectedLevel >= level.id ? "star.fill" : "lock.fill")
                         .resizable().aspectRatio(contentMode: .fit)

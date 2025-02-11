@@ -37,6 +37,7 @@ struct HomeView: View {
             LevelsProgressView(levels: levels, selectedLevel: $selectedLevel, questionIndex: $questionIndex)
                 .navigationTitle("Timeline Progress")  
         }
+        .tint(.indigo)
     }
 }
 
