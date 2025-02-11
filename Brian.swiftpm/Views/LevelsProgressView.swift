@@ -11,13 +11,13 @@ struct LevelsProgressView: View {
     
     let levels: [Level]
     @Binding var selectedLevel: Int
-    @Binding var questionIndex: Int
+    @Binding var storyIndex: Int
     
     var body: some View {
         ScrollView {
             VStack(spacing: 0){
                 ForEach(levels) { level in
-                    LevelView(level: level, selectedLevel: $selectedLevel, questionIndex: $questionIndex, isLast: level == levels.last ?? level)
+                    LevelView(level: level, selectedLevel: $selectedLevel, storyIndex: $storyIndex, isLast: level.id == levels.last?.id)
                 }
             }
         }

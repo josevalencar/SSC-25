@@ -9,33 +9,43 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var selectedLevel = 0
-    @State private var questionIndex = 0
+    @State private var storyIndex = 0
     
     let levels: [Level] = [
-        Level(id: 0, questions: [
-            Question(question: "What color is the sky?", possibleAnswers: ["Blue", "Green", "Red"], answerIndex: 0),
-            Question(question: "Which animal barks?", possibleAnswers: ["Car", "Dog", "Bird"], answerIndex: 1),
-            Question(question: "What do you drink in the morning?", possibleAnswers: ["Juice", "Milk", "Water"], answerIndex: 1),
-        ]),
-        
-        Level(id: 1, questions: [
-            Question(question: "What color is the sky?", possibleAnswers: ["Blue", "Green", "Red"], answerIndex: 0),
-            Question(question: "Which animal barks?", possibleAnswers: ["Car", "Dog", "Bird"], answerIndex: 1),
-            Question(question: "What do you drink in the morning?", possibleAnswers: ["Juice", "Milk", "Water"], answerIndex: 1),
-        ]),
-        
-        Level(id: 2, questions: [
-            Question(question: "What color is the sky?", possibleAnswers: ["Blue", "Green", "Red"], answerIndex: 0),
-            Question(question: "Which animal barks?", possibleAnswers: ["Car", "Dog", "Bird"], answerIndex: 1),
-            Question(question: "What do you drink in the morning?", possibleAnswers: ["Juice", "Milk", "Water"], answerIndex: 1),
-        ]),
-        
-    ]
+            Level(
+                id: 0,
+                stories: [
+                    Story(id: 0, title: "Story A1", view: AnyView(Text("Story A1 Content"))),
+                    Story(id: 1, title: "Story A2", view: AnyView(Text("Story A2 Content"))),
+                    Story(id: 2, title: "Story A3", view: AnyView(Text("Story A3 Content")))
+                ]
+            ),
+            Level(
+                id: 1,
+                stories: [
+                    Story(id: 0, title: "Story B1", view: AnyView(Text("Story B1 Content"))),
+                    Story(id: 1, title: "Story B2", view: AnyView(Text("Story B2 Content"))),
+                    Story(id: 2, title: "Story B3", view: AnyView(Text("Story B3 Content")))
+                ]
+            ),
+            Level(
+                id: 2,
+                stories: [
+                    Story(id: 0, title: "Story C1", view: AnyView(Text("Story C1 Content"))),
+                    Story(id: 1, title: "Story C2", view: AnyView(Text("Story C2 Content"))),
+                    Story(id: 2, title: "Story C3", view: AnyView(Text("Story C3 Content")))
+                ]
+            )
+        ]
     
     var body: some View {
         NavigationView {
-            LevelsProgressView(levels: levels, selectedLevel: $selectedLevel, questionIndex: $questionIndex)
-                .navigationTitle("Timeline Progress")  
+            LevelsProgressView(
+                levels: levels,
+                selectedLevel: $selectedLevel,
+                storyIndex: $storyIndex
+            )
+            .navigationTitle("Timeline Progress")
         }
         .tint(.indigo)
     }
