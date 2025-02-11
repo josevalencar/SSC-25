@@ -21,32 +21,35 @@ struct CustomGameLevelView: View {
     }
     
     var body: some View {
+        ZStack {
+            
+            Color.black.ignoresSafeArea()
+
             VStack(spacing: 30) {
                 let currentStory = level.stories[storyIndex]
-                
-                Text(currentStory.title)
-                    .font(.largeTitle)
-                    .bold()
                 
                 currentStory.view
                 
                 HStack {
-                        Button("Previous") {
-                            handlePrevious()
-                        }
-                        .disabled(storyIndex == 0)
-
-                        Spacer()
-
-                        Button("Continue") {
-                            handleContinue()
-                        }
+                    Button("Previous") {
+                        handlePrevious()
                     }
+                    .disabled(storyIndex == 0)
+                    
+                    Spacer()
+                    
+                    Button("Continue") {
+                        handleContinue()
+                    }
+                }
             }
             .padding()
             .navigationTitle("Level \(level.id + 1)")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
+            .toolbarBackground(Color.black, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
@@ -65,20 +68,22 @@ struct CustomGameLevelView: View {
                         .lineLimit(1)
                         .minimumScaleFactor(0.1)
                         .frame(width: 30, height: 30)
-                        .foregroundColor(.white)   
+                        .foregroundColor(.white)
                         .background(.indigo)
                         .clipShape(Circle())
                 }
             }
         }
+        
+    }
     
     func handlePrevious() {
         if storyIndex > 0 {
             storyIndex -= 1
         }
     }
-
-        
+    
+    
     func handleContinue() {
         storyIndex += 1
         
@@ -92,9 +97,9 @@ struct CustomGameLevelView: View {
             storyIndex = 0
         }
     }
-
-    }
+    
+}
 
 #Preview {
-//    CustomGameLevelView()
+    //    CustomGameLevelView()
 }

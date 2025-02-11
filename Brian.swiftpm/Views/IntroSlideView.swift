@@ -7,17 +7,14 @@
 
 import SwiftUI
 
-/// A single "slide" formerly managed inside StoryView.
 @available(iOS 17.0, *)
 struct IntroSlideView: View {
     let item: StoryItem
     
-    // Track animation states if needed (for the neuron slide, etc.)
     @State private var hasAnimatedNeuronSlide = false
     @State private var showBrianTitle = false
     @State private var showBrianBody = false
     
-    // We'll track the timeline start for the shader animations.
     private let start = Date()
     
     var body: some View {
@@ -25,18 +22,14 @@ struct IntroSlideView: View {
             Color.black.ignoresSafeArea()
             
             VStack(spacing: 20) {
-                // Possibly a top title if you want it:
                 if case .shader(.neuron) = item.type {
-                    // The special "Brian" greeting slide
                     neuronShaderCard
                         .frame(height: 300)
                     
-                    // Below it, text that appears with the fade-in animation
                     brianTextView
                 }
                 else {
-                    // For other slides: show the appropriate background or image
-                    // and the text
+
                     slideContent
                         .frame(height: 300)
                     
@@ -48,14 +41,13 @@ struct IntroSlideView: View {
             }
             .padding(.vertical, 30)
         }
-        // Trigger your special animation logic on appear
         .onAppear {
             runNeuronAnimationIfNeeded()
         }
     }
     
     // MARK: - Different Cases for item.type
-    
+
     /// For neuron special effect
     private var neuronShaderCard: some View {
         TimelineView(.animation) { timeline in
@@ -71,7 +63,22 @@ struct IntroSlideView: View {
                         )
                     )
                 }
+                .mask {
+                      LinearGradient(
+                          gradient: Gradient(stops: [
+                              .init(color: .clear, location: 0.0),
+                              .init(color: .black, location: 0.2),
+                              .init(color: .black, location: 0.8),
+                              .init(color: .clear, location: 1.0)
+                          ]),
+                          startPoint: .top,
+                          endPoint: .bottom
+                      )
+                  }
+                  .shadow(radius: 8)
+            
         }
+        
     }
     
     /// For other slide types (blue network, green network, or image)
@@ -109,6 +116,19 @@ struct IntroSlideView: View {
                         )
                     )
                 }
+                .mask {
+                      LinearGradient(
+                          gradient: Gradient(stops: [
+                              .init(color: .clear, location: 0.0),
+                              .init(color: .black, location: 0.2),
+                              .init(color: .black, location: 0.8),
+                              .init(color: .clear, location: 1.0)
+                          ]),
+                          startPoint: .top,
+                          endPoint: .bottom
+                      )
+                  }
+                  .shadow(radius: 8)
         }
     }
     
@@ -126,6 +146,19 @@ struct IntroSlideView: View {
                         )
                     )
                 }
+                .mask {
+                      LinearGradient(
+                          gradient: Gradient(stops: [
+                              .init(color: .clear, location: 0.0),
+                              .init(color: .black, location: 0.2),
+                              .init(color: .black, location: 0.8),
+                              .init(color: .clear, location: 1.0)
+                          ]),
+                          startPoint: .top,
+                          endPoint: .bottom
+                      )
+                  }
+                  .shadow(radius: 8)
         }
     }
     
@@ -155,7 +188,8 @@ struct IntroSlideView: View {
         hasAnimatedNeuronSlide = true
         showBrianTitle = false
         showBrianBody  = false
-        
+                
+                
         // Title fades in over 1s after 0.5s
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             withAnimation(.easeIn(duration: 1)) {
