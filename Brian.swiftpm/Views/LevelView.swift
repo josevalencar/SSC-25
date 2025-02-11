@@ -50,7 +50,7 @@ struct LevelView: View {
                         .frame(width: 25, height: 25)
                         .foregroundStyle(selectedLevel > level.id ? .indigo : selectedLevel < level.id ? .gray : .white)
                 }
-                .disabled(selectedLevel < level.id)
+                .disabled(selectedLevel != level.id)
                 .frame(width: 60, height: 60)
                 .background(selectedLevel >= level.id ? .green : .gray.opacity(0.3))
                 .clipShape(.circle)
@@ -63,8 +63,6 @@ struct LevelView: View {
                         selectedLevel: selectedLevel,
                         progress: CGFloat(storyIndex) / CGFloat(level.stories.count)
                     )
-                    // Ignore touch events in the overlay
-                    .allowsHitTesting(false)
                 }
             }
         }.frame(maxWidth: .infinity, minHeight: 150)

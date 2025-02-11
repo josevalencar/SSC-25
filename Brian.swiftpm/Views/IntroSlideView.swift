@@ -1,0 +1,173 @@
+//
+//  SwiftUIView.swift
+//  Brian
+//
+//  Created by José Vitor Alencar on 11/02/25.
+//
+
+import SwiftUI
+
+/// A single "slide" formerly managed inside StoryView.
+@available(iOS 17.0, *)
+struct IntroSlideView: View {
+    let item: StoryItem
+    
+    // Track animation states if needed (for the neuron slide, etc.)
+    @State private var hasAnimatedNeuronSlide = false
+    @State private var showBrianTitle = false
+    @State private var showBrianBody = false
+    
+    // We'll track the timeline start for the shader animations.
+    private let start = Date()
+    
+    var body: some View {
+        ZStack {
+            Color.black.ignoresSafeArea()
+            
+            VStack(spacing: 20) {
+                // Possibly a top title if you want it:
+                if case .shader(.neuron) = item.type {
+                    // The special "Brian" greeting slide
+                    neuronShaderCard
+                        .frame(height: 300)
+                    
+                    // Below it, text that appears with the fade-in animation
+                    brianTextView
+                }
+                else {
+                    // For other slides: show the appropriate background or image
+                    // and the text
+                    slideContent
+                        .frame(height: 300)
+                    
+                    Text(item.text)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.leading)
+                        .padding(.horizontal)
+                }
+            }
+            .padding(.vertical, 30)
+        }
+        // Trigger your special animation logic on appear
+        .onAppear {
+            runNeuronAnimationIfNeeded()
+        }
+    }
+    
+    // MARK: - Different Cases for item.type
+    
+    /// For neuron special effect
+    private var neuronShaderCard: some View {
+        TimelineView(.animation) { timeline in
+            let time = start.distance(to: timeline.date)
+            Rectangle()
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .shadow(radius: 8)
+                .visualEffect { content, proxy in
+                    content.colorEffect(
+                        ShaderLibrary.brian(
+                            .float2(proxy.size),
+                            .float(time)
+                        )
+                    )
+                }
+        }
+    }
+    
+    /// For other slide types (blue network, green network, or image)
+    private var slideContent: some View {
+        switch item.type {
+        case .shader(.neuralBlue):
+            return AnyView(blueNetworkShaderCard)
+        case .shader(.neuralGreen):
+            return AnyView(colorNetworkShaderCard)
+        case .shader(.neuron):
+            return AnyView(EmptyView()) // handled above
+        case .image(let name):
+            return AnyView(
+                Image(name)
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .shadow(radius: 8)
+                    .padding()
+            )
+        }
+    }
+    
+    private var blueNetworkShaderCard: some View {
+        TimelineView(.animation) { timeline in
+            let time = start.distance(to: timeline.date)
+            Rectangle()
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .shadow(radius: 8)
+                .visualEffect { content, proxy in
+                    content.colorEffect(
+                        ShaderLibrary.blueNetwork(
+                            .float2(proxy.size),
+                            .float(time)
+                        )
+                    )
+                }
+        }
+    }
+    
+    private var colorNetworkShaderCard: some View {
+        TimelineView(.animation) { timeline in
+            let time = start.distance(to: timeline.date)
+            Rectangle()
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .shadow(radius: 8)
+                .visualEffect { content, proxy in
+                    content.colorEffect(
+                        ShaderLibrary.colorfulNetwork(
+                            .float2(proxy.size),
+                            .float(time)
+                        )
+                    )
+                }
+        }
+    }
+    
+    /// The special "Brian" text fade-in effect
+    private var brianTextView: some View {
+        VStack(spacing: 10) {
+            // Title
+            Text("Hi, I’m Brian")
+                .font(.title.bold())
+                .foregroundColor(.white)
+                .opacity(showBrianTitle ? 1 : 0)
+            
+            // The main text from item
+            Text(item.text)
+                .foregroundColor(.white)
+                .multilineTextAlignment(.leading)
+                .opacity(showBrianBody ? 1 : 0)
+        }
+        .padding(.horizontal)
+    }
+    
+    /// Animate the "neuron" slide once
+    private func runNeuronAnimationIfNeeded() {
+        guard case .shader(.neuron) = item.type,
+              !hasAnimatedNeuronSlide else { return }
+        
+        hasAnimatedNeuronSlide = true
+        showBrianTitle = false
+        showBrianBody  = false
+        
+        // Title fades in over 1s after 0.5s
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            withAnimation(.easeIn(duration: 1)) {
+                showBrianTitle = true
+            }
+        }
+        // Body fades in over 3s after 1.5s
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            withAnimation(.easeIn(duration: 3)) {
+                showBrianBody = true
+            }
+        }
+    }
+}
+

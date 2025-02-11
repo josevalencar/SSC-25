@@ -7,36 +7,56 @@
 
 import SwiftUI
 
+@available(iOS 17.0, *)
 struct HomeView: View {
     @State private var selectedLevel = 0
     @State private var storyIndex = 0
     
     let levels: [Level] = [
-            Level(
-                id: 0,
-                stories: [
-                    Story(id: 0, title: "Story A1", view: AnyView(Text("Story A1 Content"))),
-                    Story(id: 1, title: "Story A2", view: AnyView(Text("Story A2 Content"))),
-                    Story(id: 2, title: "Story A3", view: AnyView(Text("Story A3 Content")))
-                ]
-            ),
-            Level(
-                id: 1,
-                stories: [
-                    Story(id: 0, title: "Story B1", view: AnyView(Text("Story B1 Content"))),
-                    Story(id: 1, title: "Story B2", view: AnyView(Text("Story B2 Content"))),
-                    Story(id: 2, title: "Story B3", view: AnyView(Text("Story B3 Content")))
-                ]
-            ),
-            Level(
-                id: 2,
-                stories: [
-                    Story(id: 0, title: "Story C1", view: AnyView(Text("Story C1 Content"))),
-                    Story(id: 1, title: "Story C2", view: AnyView(Text("Story C2 Content"))),
-                    Story(id: 2, title: "Story C3", view: AnyView(Text("Story C3 Content")))
-                ]
-            )
-        ]
+        Level(
+            id: 0,
+            stories: [
+                // Each "slide" from the old multi-step is now its own Story
+                Story(
+                    id: 0,
+                    title: "Neuron Slide",
+                    view: AnyView(IntroSlideView(item: firstLevelStoryItems[0]))
+                ),
+                Story(
+                    id: 1,
+                    title: "Blue Network Slide",
+                    view: AnyView(IntroSlideView(item: firstLevelStoryItems[1]))
+                ),
+                Story(
+                    id: 2,
+                    title: "Green Network Slide",
+                    view: AnyView(IntroSlideView(item: firstLevelStoryItems[2]))
+                ),
+                Story(
+                    id: 3,
+                    title: "Image Slide",
+                    view: AnyView(IntroSlideView(item: firstLevelStoryItems[3]))
+                )
+            ]
+        ),
+        Level(
+            id: 1,
+            stories: [
+                Story(id: 0, title: "Story B1", view: AnyView(Text("Story B1 Content"))),
+                Story(id: 1, title: "Story B2", view: AnyView(Text("Story B2 Content"))),
+                Story(id: 2, title: "Story B3", view: AnyView(Text("Story B3 Content")))
+            ]
+        ),
+        Level(
+            id: 2,
+            stories: [
+                Story(id: 0, title: "Story C1", view: AnyView(Text("Story C1 Content"))),
+                Story(id: 1, title: "Story C2", view: AnyView(Text("Story C2 Content"))),
+                Story(id: 2, title: "Story C3", view: AnyView(Text("Story C3 Content")))
+            ]
+        ),
+    ]
+
     
     var body: some View {
         NavigationView {
@@ -52,5 +72,9 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    if #available(iOS 17.0, *) {
+        HomeView()
+    } else {
+        // Fallback on earlier versions
+    }
 }

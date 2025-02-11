@@ -15,7 +15,6 @@ half4 colorfulNetwork(float2 pos,
                    float2 resolution,
                    float time)
 {
-    // Constants
     constexpr float DETAIL = 15.0;
     constexpr float ANIMATION_SPEED = 1.5;
     constexpr float BRIGHTNESS = 0.2;
@@ -23,7 +22,6 @@ half4 colorfulNetwork(float2 pos,
     constexpr float SATURATION = 0.31;
     constexpr float PI = 3.14159;
 
-    // Convert pos to normalized coordinates
     float2 p = (pos - 0.5 * resolution) / resolution.y;
     float dist_squared = dot(p, p);
     float S = 15.0;
@@ -31,9 +29,7 @@ half4 colorfulNetwork(float2 pos,
     float2 n = float2(0.0);
     float2 q;
 
-    // Main loop for neuron structure
     for (float j = 1.0; j < DETAIL; j++) {
-        // Rodrigues' rotation formula
         float3 rotatedP;
         {
             float3 ax = float3(0.0, 0.0, 1.0);
@@ -43,7 +39,6 @@ half4 colorfulNetwork(float2 pos,
         }
         p = rotatedP.xy;
 
-        // Update n using Rodrigues' rotation formula
         {
             float3 ax = float3(0.0, 0.0, 1.0);
             float c = cos(5.0 + sin(time) * 0.01);
@@ -52,19 +47,15 @@ half4 colorfulNetwork(float2 pos,
             n = rotatedN.xy;
         }
 
-        // Compute q
         q = p * S + time * ANIMATION_SPEED + sin(time * ANIMATION_SPEED - dist_squared * 0.0) * 2.0 + j + n;
 
-        // Accumulate contributions
         a += dot(cos(q) / S, float2(SATURATION));
         n -= sin(q);
         S *= STRUCTURE_SMOOTHNESS;
     }
 
-    // Compute final result
     float result = 0.17 * ((a + BRIGHTNESS) + a + a);
 
-    // Voronoi calculation
     float3 voronoi;
     {
         float3 x = float3(time, pos / resolution);
@@ -106,6 +97,5 @@ half4 colorfulNetwork(float2 pos,
 
     float3 color = final * neuronColor + float3(0.5, 0.1, 0.8) * final * 0.1;
 
-    // Fix for Metal's `half4` construction
     return half4(half3(color), half(1.0));
 }

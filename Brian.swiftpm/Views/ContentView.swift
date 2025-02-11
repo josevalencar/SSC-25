@@ -83,7 +83,7 @@ struct ContentView: View {
                 .transition(.opacity)
             }
             else {
-                StoryView()
+                HomeView()
                     .transition(.opacity)
             }
         }

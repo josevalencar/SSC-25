@@ -22,20 +22,26 @@ struct CustomGameLevelView: View {
     
     var body: some View {
             VStack(spacing: 30) {
-                // The current story
-                // If you have bounds-check issues, you can guard it, or do a check
                 let currentStory = level.stories[storyIndex]
                 
                 Text(currentStory.title)
                     .font(.largeTitle)
                     .bold()
                 
-                // Show the story's custom view
                 currentStory.view
                 
-                Button("Continue") {
-                    handleContinue()
-                }
+                HStack {
+                        Button("Previous") {
+                            handlePrevious()
+                        }
+                        .disabled(storyIndex == 0)
+
+                        Spacer()
+
+                        Button("Continue") {
+                            handleContinue()
+                        }
+                    }
             }
             .padding()
             .navigationTitle("Level \(level.id + 1)")
@@ -53,33 +59,40 @@ struct CustomGameLevelView: View {
                     }
                 }
                 
-                // Optional: show progress indicator
                 ToolbarItem(placement: .topBarTrailing) {
                     Text("\(storyIndex + 1) / \(level.stories.count)")
                         .font(.system(size: 11))
                         .lineLimit(1)
                         .minimumScaleFactor(0.1)
                         .frame(width: 30, height: 30)
+                        .foregroundColor(.white)   
                         .background(.indigo)
                         .clipShape(Circle())
                 }
             }
         }
-        
-        func handleContinue() {
-            storyIndex += 1
-            
-            // If the user has viewed all the stories, go back and increment level
-            if storyIndex >= level.stories.count {
-//                dismiss()
-                // If not already beyond this level, increment
-                if selectedLevel == level.id {
-                    selectedLevel += 1
-                }
-                storyIndex = 0
-            }
-
+    
+    func handlePrevious() {
+        if storyIndex > 0 {
+            storyIndex -= 1
         }
+    }
+
+        
+    func handleContinue() {
+        storyIndex += 1
+        
+        if storyIndex >= level.stories.count {
+            dismiss()
+            
+            if selectedLevel == level.id {
+                selectedLevel += 1
+            }
+            
+            storyIndex = 0
+        }
+    }
+
     }
 
 #Preview {
