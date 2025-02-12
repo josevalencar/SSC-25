@@ -44,7 +44,7 @@ struct CustomGameLevelView: View {
                 }
             }
             .padding()
-            .navigationTitle("Level \(level.id + 1)")
+            .navigationTitle("\(level.stories[storyIndex].title)")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
             .toolbarBackground(Color.black, for: .navigationBar)
