@@ -62,10 +62,10 @@ struct StorySlideView: View {
                 .mask {
                       LinearGradient(
                           gradient: Gradient(stops: [
-                              .init(color: .clear, location: 0.0),   // top fully transparent
-                              .init(color: .black, location: 0.2),  // fade to opaque
-                              .init(color: .black, location: 0.8),  // stay fully opaque
-                              .init(color: .clear, location: 1.0)   // fade out again bottom
+                              .init(color: .clear, location: 0.0),
+                              .init(color: .black, location: 0.2),
+                              .init(color: .black, location: 0.8),
+                              .init(color: .clear, location: 1.0)
                           ]),
                           startPoint: .top,
                           endPoint: .bottom
@@ -93,10 +93,10 @@ struct StorySlideView: View {
                 .mask {
                     LinearGradient(
                         gradient: Gradient(stops: [
-                            .init(color: .clear, location: 0.0),   // top fully transparent
-                            .init(color: .black, location: 0.2),  // fade to opaque
-                            .init(color: .black, location: 0.8),  // stay fully opaque
-                            .init(color: .clear, location: 1.0)   // fade out again bottom
+                            .init(color: .clear, location: 0.0),
+                            .init(color: .black, location: 0.2),
+                            .init(color: .black, location: 0.8),
+                            .init(color: .clear, location: 1.0)
                         ]),
                         startPoint: .top,
                         endPoint: .bottom
@@ -124,10 +124,10 @@ struct StorySlideView: View {
                 .mask {
                     LinearGradient(
                         gradient: Gradient(stops: [
-                            .init(color: .clear, location: 0.0),   // top fully transparent
-                            .init(color: .black, location: 0.2),  // fade to opaque
-                            .init(color: .black, location: 0.8),  // stay fully opaque
-                            .init(color: .clear, location: 1.0)   // fade out again bottom
+                            .init(color: .clear, location: 0.0),
+                            .init(color: .black, location: 0.2),
+                            .init(color: .black, location: 0.8),
+                            .init(color: .clear, location: 1.0)
                         ]),
                         startPoint: .top,
                         endPoint: .bottom
