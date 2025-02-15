@@ -16,25 +16,24 @@ struct HomeView: View {
         Level(
             id: 0,
             stories: [
-                // Each "slide" from the old multi-step is now its own Story
                 Story(
                     id: 0,
-                    title: "Neuron Slide",
+                    title: "1. The Birth of Perceptron",
                     view: AnyView(IntroSlideView(item: firstLevelStoryItems[0]))
                 ),
                 Story(
                     id: 1,
-                    title: "Blue Network Slide",
+                    title: "1. The Birth of Perceptron",
                     view: AnyView(IntroSlideView(item: firstLevelStoryItems[1]))
                 ),
                 Story(
                     id: 2,
-                    title: "Green Network Slide",
+                    title: "1. The Birth of Perceptron",
                     view: AnyView(IntroSlideView(item: firstLevelStoryItems[2]))
                 ),
                 Story(
                     id: 3,
-                    title: "Image Slide",
+                    title: "1. The Birth of Perceptron",
                     view: AnyView(IntroSlideView(item: firstLevelStoryItems[3]))
                 )
             ]
@@ -42,8 +41,8 @@ struct HomeView: View {
         Level(
             id: 1,
             stories: [
-                Story(id: 0, title: "Story B1", view: AnyView(Text("Story B1 Content"))),
-                Story(id: 1, title: "Story B2", view: AnyView(Text("Story B2 Content"))),
+                Story(id: 0, title: "Story B1", view: AnyView(PerceptronLevel1())),
+                Story(id: 1, title: "Story B2", view: AnyView(PerceptronLevel2())),
                 Story(id: 2, title: "Story B3", view: AnyView(Text("Story B3 Content")))
             ]
         ),

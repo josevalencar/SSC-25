@@ -48,7 +48,6 @@ struct IntroSlideView: View {
     
     // MARK: - Different Cases for item.type
 
-    /// For neuron special effect
     private var neuronShaderCard: some View {
         TimelineView(.animation) { timeline in
             let time = start.distance(to: timeline.date)
@@ -81,7 +80,6 @@ struct IntroSlideView: View {
         
     }
     
-    /// For other slide types (blue network, green network, or image)
     private var slideContent: some View {
         switch item.type {
         case .shader(.neuralBlue):
@@ -162,7 +160,6 @@ struct IntroSlideView: View {
         }
     }
     
-    /// The special "Brian" text fade-in effect
     private var brianTextView: some View {
         VStack(spacing: 10) {
             // Title
@@ -180,7 +177,6 @@ struct IntroSlideView: View {
         .padding(.horizontal)
     }
     
-    /// Animate the "neuron" slide once
     private func runNeuronAnimationIfNeeded() {
         guard case .shader(.neuron) = item.type,
               !hasAnimatedNeuronSlide else { return }
@@ -190,13 +186,11 @@ struct IntroSlideView: View {
         showBrianBody  = false
                 
                 
-        // Title fades in over 1s after 0.5s
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             withAnimation(.easeIn(duration: 1)) {
                 showBrianTitle = true
             }
         }
-        // Body fades in over 3s after 1.5s
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             withAnimation(.easeIn(duration: 3)) {
                 showBrianBody = true
