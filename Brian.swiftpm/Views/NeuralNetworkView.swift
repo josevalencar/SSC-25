@@ -12,6 +12,9 @@ struct NeuralNetworkView: View {
     var inputLayerCount: Int
     var hiddenLayerCount: Int
     var outputLayerCount: Int
+    var neuronWidth: CGFloat
+    var neuronHeight: CGFloat
+    var neuronSpacing: CGFloat
     
     @State private var activeLayer: Int = 0
     @State private var isAnimating: Bool = false
@@ -20,9 +23,10 @@ struct NeuralNetworkView: View {
     var body: some View {
         GeometryReader { geometry in
             let layerSpacing = geometry.size.width / 4
-            let neuronSpacing: CGFloat = 60
+            let neuronSpacing: CGFloat = neuronSpacing
             
             ZStack {
+                // Input -> Hidden Layer Connections
                 ForEach(0..<inputLayerCount, id: \.self) { inputIndex in
                     ForEach(0..<hiddenLayerCount, id: \.self) { hiddenIndex in
                         Line(start: CGPoint(
@@ -36,6 +40,7 @@ struct NeuralNetworkView: View {
                     }
                 }
                 
+                // Hidden -> Output Layer Connections
                 ForEach(0..<hiddenLayerCount, id: \.self) { hiddenIndex in
                     ForEach(0..<outputLayerCount, id: \.self) { outputIndex in
                         Line(start: CGPoint(
@@ -49,26 +54,29 @@ struct NeuralNetworkView: View {
                     }
                 }
                 
+                // Input Layer Neurons
                 ForEach(0..<inputLayerCount, id: \.self) { index in
                     Circle()
                         .fill(isNeuronActive(layer: 0) ? Color.purple : Color.gray)
-                        .frame(width: 30, height: 30)
+                        .frame(width: neuronWidth, height: neuronHeight)
                         .position(x: layerSpacing, y: neuronSpacing * CGFloat(index) + neuronSpacing / 2)
                         .animation(.easeInOut(duration: 0.8), value: activeLayer)
                 }
                 
+                // Hidden Layer Neurons
                 ForEach(0..<hiddenLayerCount, id: \.self) { index in
                     Circle()
                         .fill(isNeuronActive(layer: 1) ? Color.purple : Color.gray)
-                        .frame(width: 30, height: 30)
+                        .frame(width: neuronWidth, height: neuronHeight)
                         .position(x: layerSpacing * 2, y: neuronSpacing * CGFloat(index) + neuronSpacing / 2)
                         .animation(.easeInOut(duration: 0.8), value: activeLayer)
                 }
                 
+                // Output Layer Neurons
                 ForEach(0..<outputLayerCount, id: \.self) { index in
                     Circle()
                         .fill(isNeuronActive(layer: 2) ? Color.purple : Color.gray)
-                        .frame(width: 30, height: 30)
+                        .frame(width: neuronWidth, height: neuronHeight)
                         .position(x: layerSpacing * 3, y: neuronSpacing * CGFloat(index) + neuronSpacing / 2)
                         .animation(.easeInOut(duration: 0.8), value: activeLayer)
                 }
@@ -124,7 +132,14 @@ struct Line: Shape {
 
 struct NeuralNetworkView_Previews: PreviewProvider {
     static var previews: some View {
-        NeuralNetworkView(inputLayerCount: 3, hiddenLayerCount: 4, outputLayerCount: 2)
+        NeuralNetworkView(
+            inputLayerCount: 3,
+            hiddenLayerCount: 4,
+            outputLayerCount: 2,
+            neuronWidth: 40, // Custom width for preview
+            neuronHeight: 40, // Custom height for preview
+            neuronSpacing: 60
+        )
             .frame(height: 400)
             .background(Color.black.edgesIgnoringSafeArea(.all))
     }
