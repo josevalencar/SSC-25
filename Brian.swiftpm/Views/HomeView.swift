@@ -56,7 +56,7 @@ struct HomeView: View {
         Level(
             id: 3,
             stories: [
-                Story(id: 0, title: "Story D1", view: AnyView(Text("Story C1 Content"))),
+                Story(id: 0, title: "Story D1", view: AnyView(DigitRecognitionView())),
                 Story(id: 1, title: "Story D2", view: AnyView(Text("Story C2 Content"))),
                 Story(id: 2, title: "Story D3", view: AnyView(Text("Story C3 Content")))
             ]
