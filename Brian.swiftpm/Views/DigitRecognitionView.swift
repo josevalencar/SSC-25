@@ -10,7 +10,7 @@ import SwiftUI
 struct DigitRecognitionView: View {
     @StateObject private var viewModel = DigitViewModel()
     
-    // Adjust to an appropriate size that fits your layout
+    // The size of your drawing canvas in the UI
     let canvasSize = CGSize(width: 300, height: 300)
     
     var body: some View {
@@ -18,8 +18,12 @@ struct DigitRecognitionView: View {
             Text("Handwritten Digit Recognition")
                 .font(.headline)
             
+            // 1) The interactive drawing canvas
             DrawingCanvas(viewModel: viewModel, canvasSize: canvasSize)
+                .frame(width: canvasSize.width, height: canvasSize.height)
+                .border(Color.gray, width: 1)
             
+            // 2) Buttons for Recognize & Clear
             HStack {
                 Button("Recognize") {
                     viewModel.recognizeDigit(canvasSize: canvasSize)
@@ -38,16 +42,29 @@ struct DigitRecognitionView: View {
                 .cornerRadius(8)
             }
             
-            if let digit = viewModel.recognizedDigit {
-                Text("Recognized Digit: \(digit.value)")
+            // 3) Show the recognized digit & confidence
+            if let digit = viewModel.recognizedValue {
+                Text("Recognized Digit: \(digit)")
                     .font(.title2)
-                    .padding(.top, 8)
-                Text(String(format: "Confidence: %.2f", digit.confidence))
+                    .foregroundColor(.gray)
+                Text(String(format: "Confidence: %.2f", viewModel.recognizedConfidence ?? 0))
                     .font(.subheadline)
                     .foregroundColor(.gray)
             } else {
                 Text("Draw a digit above, then tap 'Recognize'")
                     .foregroundColor(.gray)
+            }
+
+            
+            // 4) Show a debug preview of the 28x28 image
+            if let debugImg = viewModel.debugImage {
+                Text("Model Input Preview (28×28) [Pre-Inversion?]")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                Image(uiImage: debugImg)
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .border(Color.white, width: 1)
             }
             
             Spacer()
