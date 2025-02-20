@@ -50,7 +50,7 @@ struct HomeView: View {
         Level(
             id: 2,
             stories: [
-                Story(id: 0, title: "3. Handwritten Recognition", view: AnyView(Text("Right the digits and let the AI do it for you."))),
+                Story(id: 0, title: "3. Handwritten Recognition", view: AnyView(DigitRecognitionView())),
             ]
         ),
         Level(

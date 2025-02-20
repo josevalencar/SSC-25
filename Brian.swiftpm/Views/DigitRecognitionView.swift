@@ -13,19 +13,35 @@ struct DigitRecognitionView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Handwritten Digit Recognition")
-                .font(.headline)
+            Text("Draw a number from 0-9 in the box below and press Recognize to identify it.")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
             
             DrawingCanvas(viewModel: viewModel, canvasSize: canvasSize)
                 .frame(width: canvasSize.width, height: canvasSize.height)
-                .border(Color.gray, width: 1)
+                .fixedSize()
+            
+            if let digit = viewModel.recognizedDigit {
+                VStack {
+                    Text("Recognized Digit: \(digit)")
+                        .font(.largeTitle)
+                        .bold()
+                        .foregroundStyle(.indigo)
+                    Text(String(format: "Confidence: %.2f", viewModel.recognizedConfidence ?? 0))
+                        .font(.subheadline)
+                        .foregroundStyle(.indigo)
+                }
+                .padding()
+            }
             
             HStack {
                 Button("Recognize") {
                     viewModel.recognizeDigit(canvasSize: canvasSize)
                 }
                 .padding()
-                .background(Color.blue)
+                .background(Color.green)
                 .foregroundColor(.white)
                 .cornerRadius(8)
                 
@@ -33,27 +49,12 @@ struct DigitRecognitionView: View {
                     viewModel.clearDrawing()
                 }
                 .padding()
-                .background(Color.red)
+                .background(Color.indigo)
                 .foregroundColor(.white)
                 .cornerRadius(8)
-            }
-            
-            if let digit = viewModel.recognizedDigit {
-                Text("Recognized Digit: \(digit)")
-                    .font(.title2)
-                Text(String(format: "Confidence: %.2f", viewModel.recognizedConfidence ?? 0))
-                    .font(.subheadline)
-            }
-            
-            if let debugImg = viewModel.debugImage {
-                Text("Processed Input (28×28)")
-                    .font(.footnote)
-                Image(uiImage: debugImg)
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .border(Color.white, width: 1)
             }
         }
         .padding()
     }
 }
+
