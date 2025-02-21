@@ -31,7 +31,7 @@ let items: [Item] = [
     .init(
         image: "fossil.shell.fill",
         title: "The Evolution of Intelligence",
-        text: "Journey through time to explore how **Deep Learning** has evolved—from early algorithms to modern *LLMs* that redefine human-machine interactions.",
+        text: "Journey through time to explore how Deep Learning has evolved—from early algorithms to modern LLMs that redefine human-machine interactions.",
         scale: 0.6,
         anchor: .topLeading,
         offset: -70,
@@ -40,7 +40,7 @@ let items: [Item] = [
     .init(
         image: "network",
         title: "Peek Behind the Curtain",
-        text: "Dive into the underlying math and science that powers  **Neural Networks**—numbers, equations, and a whole lot of brainy brilliance.",
+        text: "Dive into the underlying math and science that powers Neural Networks—numbers, equations, and a whole lot of brainy brilliance.",
         scale: 0.5,
         anchor: .bottomLeading,
         offset: -60,
@@ -59,7 +59,7 @@ let items: [Item] = [
     .init(
         image: "scale.3d",
         title: "Play and Explore",
-        text: "Experience **interactive models** in action as you interact with sound, images, and words—because the best way to learn is by doing.",
+        text: "Experience interactive models in action as you interact with sound, images, and words—because the best way to learn is by doing.",
         scale: 0.35,
         anchor: .bottomLeading,
         offset: -50,

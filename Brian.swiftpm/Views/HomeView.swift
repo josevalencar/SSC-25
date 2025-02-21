@@ -19,12 +19,12 @@ struct HomeView: View {
                 Story(
                     id: 0,
                     title: "1. Introduction",
-                    view: AnyView(IntroSlideView(item: firstLevelStoryItems[0]))
+                    view: AnyView(IntroductionLevel1())
                 ),
                 Story(
                     id: 1,
                     title: "1. Introduction",
-                    view: AnyView(IntroSlideView(item: firstLevelStoryItems[1]))
+                    view: AnyView(IntroductionLevel2())
                 ),
                 Story(
                     id: 2,

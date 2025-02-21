@@ -51,14 +51,12 @@ struct IntroductionLevel1: View {
                 }.frame(height: 300)
                     
                 VStack(spacing: 10) {
-                    // Title
                     Text("Hi, I’m Brian")
                         .font(.title.bold())
                         .foregroundColor(.white)
                         .opacity(showBrianTitle ? 1 : 0)
                     
-                    // The main text from item
-                    Text("I’m not **human**, but I’ve learned to think a little like one. Let me show you how humans have taught machines to process, decide, and even create—just like they do.")
+                    Text("I’m not **human**, but I’ve learned to think a little like one. Let me show you how humans have taught machines to process, decide, and even create—just like you do.")
                         .foregroundColor(.white)
                         .multilineTextAlignment(.leading)
                         .opacity(showBrianBody ? 1 : 0)
@@ -67,30 +65,30 @@ struct IntroductionLevel1: View {
             .padding(.vertical, 30)
         }
         .onAppear {
-//            runNeuronAnimationIfNeeded()
+            runNeuronAnimationIfNeeded()
         }
     }
     
-//    private func runNeuronAnimationIfNeeded() {
+    private func runNeuronAnimationIfNeeded() {
 //        guard case .shader(.neuron) = item.type,
 //              !hasAnimatedNeuronSlide else { return }
 //        
-//        hasAnimatedNeuronSlide = true
-//        showBrianTitle = false
-//        showBrianBody  = false
-//                
-//                
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//            withAnimation(.easeIn(duration: 1)) {
-//                showBrianTitle = true
-//            }
-//        }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-//            withAnimation(.easeIn(duration: 3)) {
-//                showBrianBody = true
-//            }
-//        }
-//    }
+        hasAnimatedNeuronSlide = true
+        showBrianTitle = false
+        showBrianBody  = false
+                
+                
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            withAnimation(.easeIn(duration: 1)) {
+                showBrianTitle = true
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            withAnimation(.easeIn(duration: 3)) {
+                showBrianBody = true
+            }
+        }
+    }
     
 }
 
