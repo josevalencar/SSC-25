@@ -2,16 +2,16 @@
 //  SwiftUIView.swift
 //  Brian
 //
-//  Created by José Vitor Alencar on 15/02/25.
+//  Created by José Vitor Alencar on 19/02/25.
 //
 
 import SwiftUI
 
 @available(iOS 17.0, *)
-struct PerceptronLevel1: View {
+struct IntroductionLevel4: View {
     
     private let start = Date()
-
+    
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -24,7 +24,7 @@ struct PerceptronLevel1: View {
                         .shadow(radius: 8)
                         .visualEffect { content, proxy in
                             content.colorEffect(
-                                ShaderLibrary.blueNetwork(
+                                ShaderLibrary.colorfulNetwork(
                                     .float2(proxy.size),
                                     .float(time)
                                 )
@@ -43,14 +43,12 @@ struct PerceptronLevel1: View {
                             )
                         }
                         .shadow(radius: 8)
-                        .frame(height: 450)
+                        .frame(height: 480)
                         .padding(.top, -50)
                 }
                 
                 VStack(spacing: 10) {
-                    Text("""
-    In a lab buzzing with curiosity, Frank Rosenblatt introduces the Perceptron, the first artificial neuron – a fundamental building block in machine learning. This simple machine learns to recognize patterns, primarily used for binary classification tasks.
-    """)
+                    Text("These systems are called neural networks. They form the foundation of machine learning and deep learning, enabling machines to learn, adapt, and make decisions. Instead, we use mathematical formulas.")
                         .foregroundColor(.white)
                         .multilineTextAlignment(.leading)
                 }
@@ -62,12 +60,10 @@ struct PerceptronLevel1: View {
     }
 }
 
-struct PerceptronLevel1_Previews: PreviewProvider {
-    static var previews: some View {
-        if #available(iOS 17.0, *) {
-            PerceptronLevel1()
-        } else {
-            // Fallback on earlier versions
-        }
+#Preview {
+    if #available(iOS 17.0, *) {
+        IntroductionLevel4()
+    } else {
+        // Fallback on earlier versions
     }
 }

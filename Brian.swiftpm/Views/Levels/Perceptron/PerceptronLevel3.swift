@@ -38,6 +38,7 @@ Where:
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 40)
             }
+//            .frame(maxWidth: .infinity, alignment: .center)
         }
     }
 }

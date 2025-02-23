@@ -69,10 +69,7 @@ struct IntroductionLevel1: View {
         }
     }
     
-    private func runNeuronAnimationIfNeeded() {
-//        guard case .shader(.neuron) = item.type,
-//              !hasAnimatedNeuronSlide else { return }
-//        
+    private func runNeuronAnimationIfNeeded() {  
         hasAnimatedNeuronSlide = true
         showBrianTitle = false
         showBrianBody  = false

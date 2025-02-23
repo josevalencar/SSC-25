@@ -10,6 +10,7 @@ import SwiftUICore
 struct Level: Identifiable {
     let id: Int
     let stories: [Story]
+    let icon: String
 }
 
 struct Story: Identifiable {

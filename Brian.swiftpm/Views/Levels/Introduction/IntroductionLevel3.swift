@@ -19,27 +19,29 @@ struct IntroductionLevel3: View {
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-            
-            VStack(spacing: 20) {
-                Image("neuron-cell")
-                    .resizable()
-                    .scaledToFit()
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .shadow(radius: 8)
-                    .padding()
-                    .frame(height: 300)
+                        
+            VStack(spacing: 10) {
+                NeuralNetworkView(
+                    inputLayerCount: 2,
+                    hiddenLayers: [3],
+                    outputLayerCount: 1,
+                    neuronWidth: 40,
+                    neuronHeight: 40,
+                    neuronSpacing: 60
+                )
+                .padding(.trailing, 120)
+                .padding(.top, 70)
+            }
                 
                 Text("Your brain is full of tiny cells called neurons. Each neuron has three main parts: dendrites that receive signals, an axon that sends them, and a cell body that processes the information. These neurons form a network that decides and learns over time by strengthening their connections.")
                     .foregroundColor(.white)
                     .multilineTextAlignment(.leading)
                     .padding(.horizontal)
+                    .padding(.top, 200)
             }
             .padding(.vertical, 30)
         }
-        .onAppear {
-        }
-    }
-    
+
 }
 
 #Preview {
