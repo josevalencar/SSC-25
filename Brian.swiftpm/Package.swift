@@ -38,8 +38,12 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "AppModule",
-            path: "."
+            path: ".",
+            // Add the resources array here:
+            resources: [
+                // Make sure MNISTClassifier.mlmodelc actually exists at this path:
+                .copy("MLModels/MNISTClassifier.mlmodelc")
+            ]
         )
-    ],
-    swiftLanguageVersions: [.version("6")]
+    ]
 )

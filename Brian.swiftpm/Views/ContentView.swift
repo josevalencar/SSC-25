@@ -33,7 +33,7 @@ struct ContentView: View {
                     .frame(height: 250)
                     .frame(maxHeight: .infinity)
                     
-                    Spacer().frame(height: 20)
+                    Spacer()
                     
                     VStack(spacing: 6) {
                         HStack(spacing: 4) {
@@ -45,16 +45,29 @@ struct ContentView: View {
                         }
                         .padding(.bottom, 15)
                         
-                        VStack(alignment: .leading, spacing: 3) {
+                        VStack(alignment: .leading, spacing: 5) {
                             Text(selectedItem.title)
                                 .font(.title.bold())
                                 .contentTransition(.numericText())
                                 .animation(.easeInOut, value: selectedItem.id)
                                 .padding(.leading, 5)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             
-                            JustifiedTextView(text: selectedItem.text)
-                                .frame(maxWidth: .infinity)
+//                            JustifiedTextView(text: selectedItem.text)
+//                                .frame(maxWidth: .infinity)
+                            Text(selectedItem.text)
+                                .font(.body)
+                                .foregroundColor(Color.secondary)
+                                .multilineTextAlignment(.leading)
+                                .lineSpacing(4)
+                                .padding(.horizontal, 5)
+                                .contentTransition(.numericText())
+                                .animation(.easeInOut, value: selectedItem.id)
                         }
+                        
+                        Spacer()
                         
                         Button {
                             if selectedItem.id == introItems.last?.id {
@@ -73,6 +86,8 @@ struct ContentView: View {
                                 .padding(.vertical, 12)
                                 .background(.indigo.gradient, in: .capsule)
                         }
+                        .padding(.bottom, 30)
+
                         
                         Spacer().frame(height: 20)
                     }
@@ -154,6 +169,7 @@ struct ContentView: View {
         }
     }
 }
+
 
 @available(iOS 17.0, *)
 #Preview {

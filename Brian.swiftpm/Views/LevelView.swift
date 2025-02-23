@@ -45,7 +45,7 @@ struct LevelView: View {
                 NavigationLink {
                     CustomGameLevelView(level: level, selectedLevel: $selectedLevel, storyIndex: $storyIndex)
                 } label: {
-                    Image(systemName: selectedLevel >= level.id ? "star.fill" : "lock.fill")
+                    Image(systemName: selectedLevel >= level.id ? level.icon : "lock.fill")
                         .resizable().aspectRatio(contentMode: .fit)
                         .frame(width: 25, height: 25)
                         .foregroundStyle(selectedLevel > level.id ? .indigo : selectedLevel < level.id ? .gray : .white)

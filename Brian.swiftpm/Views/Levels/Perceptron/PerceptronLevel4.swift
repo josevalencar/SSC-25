@@ -17,15 +17,16 @@ struct PerceptronLevel4: View {
                 VStack(spacing: 100) {
                     NeuralNetworkView(
                         inputLayerCount: 5,
-                        hiddenLayerCount: 12,
+                        hiddenLayers: [12, 12, 12],
                         outputLayerCount: 5,
                         neuronWidth: 10,
                         neuronHeight: 10,
                         neuronSpacing: 20
                     )
-                    .frame(width: 350, height: 200)
+                    .frame(width: 250, height: 200)
                     .background(Color.black.edgesIgnoringSafeArea(.all))
                     .padding(.top, 40)
+                    .padding(.trailing, 100)
                     
                     Text("""
 A notable application is the **recognition of handwritten digits**. By training **MLPs** (Multilayer Perceptrons) on datasets like **MNIST**, which contains thousands of images of numbers **0 through 9**, machines can accurately interpret and classify these digits, resulting in **784 (28x28 pixel image)** inputs, each pixel being calculated by an artificial neuron.

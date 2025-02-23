@@ -19,47 +19,49 @@ struct HomeView: View {
                 Story(
                     id: 0,
                     title: "1. Introduction",
-                    view: AnyView(IntroSlideView(item: firstLevelStoryItems[0]))
+                    view: AnyView(IntroductionLevel1())
                 ),
                 Story(
                     id: 1,
                     title: "1. Introduction",
-                    view: AnyView(IntroSlideView(item: firstLevelStoryItems[1]))
+                    view: AnyView(IntroductionLevel2())
                 ),
                 Story(
                     id: 2,
                     title: "1. Introduction",
-                    view: AnyView(IntroSlideView(item: firstLevelStoryItems[2]))
+                    view: AnyView(IntroductionLevel3())
                 ),
                 Story(
                     id: 3,
                     title: "1. Introduction",
-                    view: AnyView(IntroSlideView(item: firstLevelStoryItems[3]))
+                    view: AnyView(IntroductionLevel4())
                 )
-            ]
+            ],
+            icon: "star.fill"
         ),
         Level(
             id: 1,
             stories: [
-                Story(id: 0, title: "2. The Birth of Perceptron", view: AnyView(PerceptronLevel1())),
-                Story(id: 1, title: "2. The Birth of Perceptron", view: AnyView(PerceptronLevel2())),
-                Story(id: 2, title: "2. The Birth of Perceptron", view: AnyView(PerceptronLevel3())),
-                Story(id: 2, title: "2. The Birth of Perceptron", view: AnyView(PerceptronLevel4()))
-            ]
+                Story(id: 0, title: "2. Architecture Types", view: AnyView(NeuralNetworkSelectionView())),
+                Story(id: 1, title: "2. Architecture Types", view: AnyView(NNBuildView())),
+            ],
+            icon: "livephoto"
         ),
         Level(
             id: 2,
             stories: [
-                Story(id: 0, title: "3. Handwritten Recognition", view: AnyView(Text("Right the digits and let the AI do it for you."))),
-            ]
+                Story(id: 0, title: "3. The Birth of Perceptron", view: AnyView(PerceptronLevel1())),
+                Story(id: 1, title: "3. The Birth of Perceptron", view: AnyView(PerceptronLevel2())),
+                Story(id: 2, title: "3. The Birth of Perceptron", view: AnyView(PerceptronLevel4()))
+            ],
+            icon: "star.fill"
         ),
         Level(
             id: 3,
             stories: [
-                Story(id: 0, title: "Story D1", view: AnyView(Text("Story C1 Content"))),
-                Story(id: 1, title: "Story D2", view: AnyView(Text("Story C2 Content"))),
-                Story(id: 2, title: "Story D3", view: AnyView(Text("Story C3 Content")))
-            ]
+                Story(id: 0, title: "4. Handwritten Recognition", view: AnyView(DigitRecognitionView())),
+            ],
+            icon: "livephoto"
         ),
         Level(
             id: 4,
@@ -67,7 +69,8 @@ struct HomeView: View {
                 Story(id: 0, title: "Story E1", view: AnyView(Text("Story C1 Content"))),
                 Story(id: 1, title: "Story E2", view: AnyView(Text("Story C2 Content"))),
                 Story(id: 2, title: "Story E3", view: AnyView(Text("Story C3 Content")))
-            ]
+            ],
+            icon: "star.fill"
         ),
     ]
 
@@ -89,6 +92,5 @@ struct HomeView: View {
     if #available(iOS 17.0, *) {
         HomeView()
     } else {
-        // Fallback on earlier versions
     }
 }
