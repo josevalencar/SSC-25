@@ -53,8 +53,11 @@ struct DigitRecognitionView: View {
                 .foregroundColor(.white)
                 .cornerRadius(8)
             }
+            
+            Spacer()
         }
         .padding()
+        .padding(.top, 70)
     }
 }
 

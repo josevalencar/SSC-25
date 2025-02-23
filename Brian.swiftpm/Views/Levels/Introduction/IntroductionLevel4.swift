@@ -48,7 +48,7 @@ struct IntroductionLevel4: View {
                 }
                 
                 VStack(spacing: 10) {
-                    Text("These systems are called neural networks. They form the foundation of machine learning and deep learning, enabling machines to learn, adapt, and make decisions. Instead, we use mathematical formulas.")
+                    Text("These systems are called ***neural networks***. They form the foundation of **machine learning** and **deep learning**, enabling machines to *learn, adapt, and make decisions*.")
                         .foregroundColor(.white)
                         .multilineTextAlignment(.leading)
                 }

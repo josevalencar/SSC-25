@@ -10,7 +10,6 @@ import CoreML
 import Vision
 import UIKit
 
-/// Data structure representing a recognized digit.
 struct RecognizedDigit {
     let value: Int
     let confidence: Float

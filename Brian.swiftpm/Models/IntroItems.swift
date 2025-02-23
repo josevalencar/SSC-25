@@ -25,13 +25,13 @@ let items: [Item] = [
     .init(
         image: "brain.fill",
         title: "Welcome to Brian.",
-        text: "This app tells the story of how humans have shaped machines to think like our very own minds. Volume up your audio for better experience.",
+        text: "This app tells the story of how humans have shaped machines to think like our very own minds.",
         scale: 1
     ),
     .init(
         image: "fossil.shell.fill",
         title: "The Evolution of Intelligence",
-        text: "Journey through time to explore how Deep Learning has evolved—from early algorithms to modern LLMs that redefine human-machine interactions.",
+        text: "Journey through time to explore how Deep Learning has evolved—from early algorithms to modern LLMs.",
         scale: 0.6,
         anchor: .topLeading,
         offset: -70,

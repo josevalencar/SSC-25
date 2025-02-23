@@ -49,7 +49,7 @@ struct PerceptronLevel1: View {
                 
                 VStack(spacing: 10) {
                     Text("""
-    In a lab buzzing with curiosity, Frank Rosenblatt introduces the Perceptron, the first artificial neuron – a fundamental building block in machine learning. This simple machine learns to recognize patterns, primarily used for binary classification tasks.
+    In a lab buzzing with curiosity, Frank Rosenblatt introduces the ***Perceptron***, the *first* **artificial neuron** – a fundamental building block in machine learning. This simple machine learns to *recognize* **patterns**, primarily used for **binary** *classification* tasks.
     """)
                         .foregroundColor(.white)
                         .multilineTextAlignment(.leading)

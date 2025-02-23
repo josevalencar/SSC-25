@@ -15,24 +15,20 @@ half4 voidHole(float2 pos,
                 float2 resolution,
                 float time)
 {
-    // Constants
     constexpr float PI = 3.1416;
     constexpr float TAU = 6.2832;
     constexpr float LOOP_COUNT = 50.0;
 
-    float T = time * 5.0;  // Animation speed
+    float T = time * 5.0;
 
-    // Convert pos to normalized coordinates
     float2 U = (pos - 0.5 * resolution) / (resolution.y * 0.01);
-    float3 camOrigin = float3(0, 20, -120);  // Camera position
-    float3 rayDir = normalize(float3(U, resolution.y));  // 3D ray direction
+    float3 camOrigin = float3(0, 20, -120);
+    float3 rayDir = normalize(float3(U, resolution.y));
     float3 color = float3(0.0);
 
-    // Initialize marching variables
     float d = 0.0;
     float stepSize, r;
 
-    // Rotation Matrices (Inline)
     float yawAngle = 0.0;
     float pitchAngle = 0.0;
 
@@ -44,19 +40,17 @@ half4 voidHole(float2 pos,
     float sP = sin(pitchAngle);
     float2x2 pitchMatrix = float2x2(cP, -sP, sP, cP);
 
-    // Ray marching loop
     for (float i = 0.0; i < LOOP_COUNT; i++)
     {
-        float3 p = camOrigin + rayDir * d;  // Current ray position
+        float3 p = camOrigin + rayDir * d;
         p.yz = pitchMatrix * p.yz;
         p.xz = yawMatrix * p.xz;
 
-        // Distance estimation function (Fully Inline)
         float mapDist = 1e20, scaleFactor = 5.0, warpSize = 40.0, cubeSize = 0.4;
         float3 u = p;
-        u.yz = -u.zy;  // Swap y and z
-        u.xy = float2(atan2(u.x, u.y), length(u.xy));  // Convert to polar coordinates
-        u.x += T / 6.0;  // Counter rotation
+        u.yz = -u.zy;
+        u.xy = float2(atan2(u.x, u.y), length(u.xy));
+        u.x += T / 6.0;
 
         for (float j = 0.0; j < scaleFactor; j++)
         {
@@ -75,9 +69,8 @@ half4 voidHole(float2 pos,
         }
 
         stepSize = mapDist * 0.7;
-        r = (cos(round(length(p.xz)) * T / 50.0) * 0.7 - 1.8) / 2.0;  // Color gradient
+        r = (cos(round(length(p.xz)) * T / 50.0) * 0.7 - 1.8) / 2.0;
 
-        // Hue Calculation (Inline)
         float3 hue = cos((r + 0.5) * TAU + (float3(60.0, 0.0, -60.0) * (PI / 180.0))) * 0.5 + 0.5;
 
         color += min(mapDist, exp(-mapDist / 0.07)) * hue * (r + 2.4);

@@ -81,7 +81,7 @@ struct EndView: View {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            withAnimation(.easeIn(duration: 3)) {
+            withAnimation(.easeIn(duration: 2)) {
                 showBrianBody = true
             }
         }
