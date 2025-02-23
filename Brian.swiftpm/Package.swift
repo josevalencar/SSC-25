@@ -32,6 +32,9 @@ let package = Package(
                 .landscapeLeft,
                 .portraitUpsideDown(.when(deviceFamilies: [.pad]))
             ],
+            capabilities: [
+                .camera(purposeString: "Unknown Usage Description")
+            ],
             appCategory: .education
         )
     ],
@@ -39,10 +42,9 @@ let package = Package(
         .executableTarget(
             name: "AppModule",
             path: ".",
-            // Add the resources array here:
             resources: [
-                // Make sure MNISTClassifier.mlmodelc actually exists at this path:
-                .copy("MLModels/MNISTClassifier.mlmodelc")
+                .copy("MLModels/MNISTClassifier.mlmodelc"),
+                .copy("MLModels/YOLOv3TinyFP16.mlmodelc")
             ]
         )
     ]

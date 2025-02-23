@@ -66,11 +66,19 @@ struct HomeView: View {
         Level(
             id: 4,
             stories: [
-                Story(id: 0, title: "Story E1", view: AnyView(Text("Story C1 Content"))),
-                Story(id: 1, title: "Story E2", view: AnyView(Text("Story C2 Content"))),
-                Story(id: 2, title: "Story E3", view: AnyView(Text("Story C3 Content")))
+                Story(id: 0, title: "5. 2012: CNN Revolution", view: AnyView(AlexNetView())),
+                Story(id: 1, title: "5. 2017: Transformers", view: AnyView(TransformersView())),
+                Story(id: 2, title: "5. The Present and Future", view: AnyView(NowadaysView()))
             ],
             icon: "star.fill"
+        ),
+        Level(
+            id: 5,
+            stories: [
+                Story(id: 0, title: "6. The End.", view: AnyView(EndView())),
+
+            ],
+            icon: "flag.checkered"
         ),
     ]
 
