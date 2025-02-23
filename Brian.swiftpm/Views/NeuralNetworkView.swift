@@ -21,20 +21,17 @@ struct NeuralNetworkView: View {
 
     var body: some View {
         VStack {
-            Spacer() // Ensures Vertical Centering
+            Spacer()
 
             GeometryReader { geometry in
-                let totalLayers = 2 + hiddenLayers.count // Input + Hidden + Output
+                let totalLayers = 2 + hiddenLayers.count
                 let layerSpacing = geometry.size.width / CGFloat(totalLayers)
 
                 ZStack {
-                    // Ensure Everything is Centered
                     VStack {
                         Spacer()
 
-                        // Neural Network Components
                         ZStack {
-                            // Input -> First Hidden Layer
                             if let firstHiddenLayer = hiddenLayers.first {
                                 drawConnections(
                                     startLayerCount: inputLayerCount,
@@ -82,15 +79,15 @@ struct NeuralNetworkView: View {
 
                             drawNeurons(count: outputLayerCount, xPos: layerSpacing * CGFloat(hiddenLayers.count + 2), layerIndex: hiddenLayers.count + 1)
                         }
-                        .frame(maxWidth: .infinity, alignment: .center) // Fix Centering
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.horizontal)
-                        .padding(.top, 20) // Avoids clipping
+                        .padding(.top, 20)
 
                         Spacer()
                     }
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center) // Fix Centering
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 
             Spacer()
         }

@@ -10,10 +10,6 @@ import SwiftUI
 @available(iOS 17.0, *)
 struct IntroductionLevel3: View {
     
-    @State private var hasAnimatedNeuronSlide = false
-    @State private var showBrianTitle = false
-    @State private var showBrianBody = false
-    
     private let start = Date()
     
     var body: some View {
