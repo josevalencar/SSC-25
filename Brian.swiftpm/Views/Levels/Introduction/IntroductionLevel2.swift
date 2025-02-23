@@ -29,7 +29,7 @@ struct IntroductionLevel2: View {
                     .padding()
                     .frame(height: 300)
                 
-                Text("Your brain is full of tiny cells called neurons. Each neuron has three main parts: dendrites that receive signals, an axon that sends them, and a cell body that processes the information. These neurons form a network that decides and learns over time by strengthening their connections.")
+                Text("Your brain is full of *tiny cells* called **neurons**. Each neuron has three main parts: **dendrites** that *receive signals*, an **axon** that *sends* them, and a **cell body** that *processes* the information. These neurons form a **network** that decides and learns over time by *strengthening* their connections.")
                     .foregroundColor(.white)
                     .multilineTextAlignment(.leading)
                     .padding(.horizontal)

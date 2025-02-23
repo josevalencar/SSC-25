@@ -56,7 +56,7 @@ struct IntroductionLevel1: View {
                         .foregroundColor(.white)
                         .opacity(showBrianTitle ? 1 : 0)
                     
-                    Text("I’m not **human**, but I’ve learned to think a little like one. Let me show you how humans have taught machines to process, decide, and even create—just like you do.")
+                    Text("I’m not **human**, but I’ve learned to think a little like one. Let me show you how humans have taught **machines** to *process, decide, and even create*—just like **you** do.")
                         .foregroundColor(.white)
                         .multilineTextAlignment(.leading)
                         .opacity(showBrianBody ? 1 : 0)
@@ -81,7 +81,7 @@ struct IntroductionLevel1: View {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            withAnimation(.easeIn(duration: 3)) {
+            withAnimation(.easeIn(duration: 2)) {
                 showBrianBody = true
             }
         }

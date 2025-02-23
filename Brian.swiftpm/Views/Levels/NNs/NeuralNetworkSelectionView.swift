@@ -110,13 +110,13 @@ enum NeuralNetworkType: CaseIterable {
     var description: String {
         switch self {
         case .singleLayerPerceptron:
-            return "A simple perceptron with one layer that classifies linearly separable data."
+            return "A simple neural network with one layer that classifies linearly separable data."
         case .radialBasisNetwork:
-            return "Uses radial basis functions as activation functions to perform classification."
+            return "Uses special points to recognize patterns in data."
         case .multiLayerPerceptron:
-            return "A fully connected neural network with multiple hidden layers for deep learning."
+            return "A deep network that learns complex things step by step."
         case .recurrentNeuralNetwork:
-            return "Processes sequences of data and maintains memory through loops in connections."
+            return "A network with memory that understands sequences."
         }
     }
 }
